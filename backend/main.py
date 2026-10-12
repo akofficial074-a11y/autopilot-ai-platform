@@ -1,9 +1,11 @@
 
+
 import os
 import re
 import math
 import json
 import sqlite3
+import datetime
 
 import requests
 import bcrypt
@@ -17,6 +19,23 @@ from seed import CITY, load
 DB_PATH = os.path.join(os.path.dirname(__file__), "autopilot.db")
 OL = "http://localhost:11434"
 SK = os.getenv("AUTOPILOT_SECRET", "local-autopilot-dev-secret")
+BOOKING_SLOTS = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+]
 
 
 def get_conn():
@@ -398,6 +417,25 @@ def pb(d: dict, e=Depends(uid)):
 @app.get("/dashboard")
 def dash(e=Depends(uid), vehicle_type: str = "All"):
     b = get_business(e)
+    conn = get_conn()
+    booking_filter = "e = ? AND status != 'Cancelled'"
+    booking_params = [e]
+    if vehicle_type in ("Two-Wheeler", "Four-Wheeler"):
+        booking_filter += " AND vehicle_type = ?"
+        booking_params.append(vehicle_type)
+    booking_counts = conn.execute(
+        f"""
+        SELECT COUNT(*) AS total,
+               SUM(CASE WHEN status = 'Booked' THEN 1 ELSE 0 END) AS booked,
+               SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed,
+               SUM(CASE WHEN vehicle_type = 'Two-Wheeler' THEN 1 ELSE 0 END) AS two_wheeler,
+               SUM(CASE WHEN vehicle_type = 'Four-Wheeler' THEN 1 ELSE 0 END) AS four_wheeler
+        FROM bookings
+        WHERE {booking_filter}
+        """,
+        tuple(booking_params),
+    ).fetchone()
+    conn.close()
     r = float(b.get("revenue", 0) or 0)
     c = float(b.get("customers", 0) or 0)
     sv = b.get("services") or ["General Service"]
@@ -447,6 +485,10 @@ def dash(e=Depends(uid), vehicle_type: str = "All"):
 
     return {
         "b": b,
+        "booking_analytics": {
+            key: int(booking_counts[key] or 0)
+            for key in ("total", "booked", "completed", "two_wheeler", "four_wheeler")
+        },
         "trend": tr,
         "months": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(),
         "mix": mix,
@@ -783,23 +825,12 @@ def booking_slots(
     if not date or not branch:
         return {"available": []}
 
-    default_slots = [
-        "09:00",
-        "09:30",
-        "10:00",
-        "10:30",
-        "11:00",
-        "11:30",
-        "12:00",
-        "13:00",
-        "13:30",
-        "14:00",
-        "14:30",
-        "15:00",
-        "15:30",
-        "16:00",
-        "16:30",
-    ]
+    try:
+        requested_date = datetime.date.fromisoformat(date)
+    except ValueError as exc:
+        raise HTTPException(400, "Date must use YYYY-MM-DD format") from exc
+    if requested_date < datetime.date.today():
+        raise HTTPException(400, "Bookings cannot be made in the past")
 
     conn = get_conn()
     rows = conn.execute(
@@ -813,7 +844,7 @@ def booking_slots(
     conn.close()
 
     booked = {row["time"] for row in rows}
-    available = [slot for slot in default_slots if slot not in booked]
+    available = [slot for slot in BOOKING_SLOTS if slot not in booked]
     return {"available": available}
 
 
@@ -832,27 +863,60 @@ def create_booking(payload: dict, e=Depends(uid)):
     if missing:
         raise HTTPException(400, "Missing required booking details")
 
+    try:
+        booking_date = datetime.date.fromisoformat(str(payload["date"]).strip())
+    except ValueError as exc:
+        raise HTTPException(400, "Date must use YYYY-MM-DD format") from exc
+    if booking_date < datetime.date.today():
+        raise HTTPException(400, "Bookings cannot be made in the past")
+
+    booking_time = str(payload["time"]).strip()
+    if booking_time not in BOOKING_SLOTS:
+        raise HTTPException(400, "Choose an available time slot")
+
     conn = get_conn()
-    conn.execute(
-        """
-        INSERT INTO bookings (
-            e, customer, vehicle_type, vehicle, service, problem, branch, date, time, status
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Booked')
-        """,
-        (
-            e,
-            str(payload.get("customer", "")).strip(),
-            str(payload.get("vehicle_type", "Four-Wheeler")).strip() or "Four-Wheeler",
-            str(payload.get("vehicle", "")).strip(),
-            str(payload.get("service", "")).strip(),
-            str(payload.get("problem", "") or ""),
-            str(payload.get("branch", "")).strip(),
-            str(payload.get("date", "")).strip(),
-            str(payload.get("time", "")).strip(),
-        ),
-    )
-    conn.commit()
-    conn.close()
+    try:
+        conn.execute("BEGIN IMMEDIATE")
+        occupied = conn.execute(
+            """
+            SELECT 1 FROM bookings
+            WHERE e = ? AND date = ? AND branch = ? AND time = ? AND status != 'Cancelled'
+            LIMIT 1
+            """,
+            (
+                e,
+                booking_date.isoformat(),
+                str(payload["branch"]).strip(),
+                booking_time,
+            ),
+        ).fetchone()
+        if occupied:
+            raise HTTPException(409, "That time slot has already been booked")
+
+        conn.execute(
+            """
+            INSERT INTO bookings (
+                e, customer, vehicle_type, vehicle, service, problem, branch, date, time, status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Booked')
+            """,
+            (
+                e,
+                str(payload.get("customer", "")).strip(),
+                str(payload.get("vehicle_type", "Four-Wheeler")).strip() or "Four-Wheeler",
+                str(payload.get("vehicle", "")).strip(),
+                str(payload.get("service", "")).strip(),
+                str(payload.get("problem", "") or ""),
+                str(payload.get("branch", "")).strip(),
+                booking_date.isoformat(),
+                booking_time,
+            ),
+        )
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
     return {"ok": True}
 
 
