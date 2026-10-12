@@ -68,6 +68,19 @@ h1, h2, h3, h4, .logo {
 
 .main { margin-left: 220px; padding: 24px; }
 
+.segmented { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-alt); }
+.segmented button { padding: 7px 11px; color: var(--text); background: transparent; }
+.segmented button.selected { color: #fff; background: #313b46; }
+.dashboard-live { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.dashboard-live-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.dashboard-live-head h3, .dashboard-live-head p { margin-bottom: 4px; }
+.dashboard-live .grid { gap: 10px; }
+.dashboard-live .card { margin: 0; box-shadow: none; }
+.booking-form h3 { margin-top: 8px; }
+.booking-form textarea { min-height: 80px; }
+.procurement-search { padding: 0; }
+.procurement-search .grid { margin-bottom: 10px; }
+
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -198,6 +211,30 @@ button.g { background: #313b46; }
   font-weight: 600;
 }
 
+.upload-section {
+  padding: 16px;
+  margin: 8px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-alt);
+}
+
+.upload-section h3 { margin-bottom: 6px; }
+.upload-section p { margin: 0 0 10px; }
+.upload-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.upload-actions .upload-box { flex: 1 1 240px; }
+.upload-actions .g { flex: 0 0 auto; }
+
+.dashboard-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dashboard-source a { color: var(--brand); font-weight: 600; }
+.dashboard-source .small { margin-top: 3px; }
+
 .inline-actions {
   display: flex;
   gap: 10px;
@@ -235,6 +272,27 @@ button.g { background: #313b46; }
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
+.chat-session-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.chat-session-row .chat-session {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-delete {
+  align-self: flex-start;
+  padding: 8px 10px;
+  color: #8a2c24;
+  background: #fff;
+  border-color: var(--line);
+}
+
+.chat-delete:hover { color: #fff; background: #a33a30; }
 
 .chat-session.active {
   background: #fff1e6;
@@ -360,4 +418,5 @@ tbody tr:last-child td { border-bottom: none; }
   .hero .btn { display: inline-block; margin: 0 8px 8px 0; }
   .chat-layout { grid-template-columns: 1fr; }
   .chat-form { flex-direction: column; }
+  .dashboard-source { align-items: flex-start; flex-direction: column; }
 }
