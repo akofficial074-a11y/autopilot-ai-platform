@@ -1,0 +1,49 @@
+part_name,part_number,vehicle_brand,vehicle_model,year_from,year_to,seller_name,seller_city,seller_lat,seller_lng,price,delivery_charge,availability,rating,delivery_days,warranty
+Clutch Master Cylinder,CMC-8801,Maruti,Gypsy,1995,2018,Rare Auto Spares,Chennai,13.0827,80.2707,2400,60,In Stock,4.5,3,12 months
+Clutch Master Cylinder,CMC-8801,Maruti,Gypsy,1995,2018,Heritage Parts Hub,Bengaluru,12.9716,77.5946,2208,90,Limited,4.2,4,6 months
+Clutch Master Cylinder,CMC-8801,Maruti,Gypsy,1995,2018,Classic Motor Depot,Mumbai,19.076,72.8777,2688,120,In Stock,4.7,5,12 months
+Clutch Master Cylinder,CMC-8801,Maruti,Gypsy,1995,2018,South Auto Traders,Kochi,9.9312,76.2673,2040,50,Order Only,3.8,8,3 months
+Front Wheel Bearing,FWB-2210,Tata,Sumo,1998,2012,Heritage Parts Hub,Bengaluru,12.9716,77.5946,1656,90,Limited,4.2,4,6 months
+Front Wheel Bearing,FWB-2210,Tata,Sumo,1998,2012,Classic Motor Depot,Mumbai,19.076,72.8777,2016,120,In Stock,4.7,5,12 months
+Front Wheel Bearing,FWB-2210,Tata,Sumo,1998,2012,South Auto Traders,Kochi,9.9312,76.2673,1530,50,Order Only,3.8,8,3 months
+Front Wheel Bearing,FWB-2210,Tata,Sumo,1998,2012,Capital Car Parts,Delhi,28.6139,77.209,1890,150,In Stock,4.4,6,6 months
+Power Steering Pump,PSP-5532,Mahindra,Scorpio,2002,2014,Classic Motor Depot,Mumbai,19.076,72.8777,7616,120,In Stock,4.7,5,12 months
+Power Steering Pump,PSP-5532,Mahindra,Scorpio,2002,2014,South Auto Traders,Kochi,9.9312,76.2673,5780,50,Order Only,3.8,8,3 months
+Power Steering Pump,PSP-5532,Mahindra,Scorpio,2002,2014,Capital Car Parts,Delhi,28.6139,77.209,7140,150,In Stock,4.4,6,6 months
+Power Steering Pump,PSP-5532,Mahindra,Scorpio,2002,2014,Rare Auto Spares,Chennai,13.0827,80.2707,6800,60,In Stock,4.5,3,12 months
+Timing Chain Kit,TCK-7714,Hyundai,Santro,1998,2010,South Auto Traders,Kochi,9.9312,76.2673,3570,50,Order Only,3.8,8,3 months
+Timing Chain Kit,TCK-7714,Hyundai,Santro,1998,2010,Capital Car Parts,Delhi,28.6139,77.209,4410,150,In Stock,4.4,6,6 months
+Timing Chain Kit,TCK-7714,Hyundai,Santro,1998,2010,Rare Auto Spares,Chennai,13.0827,80.2707,4200,60,In Stock,4.5,3,12 months
+Timing Chain Kit,TCK-7714,Hyundai,Santro,1998,2010,Heritage Parts Hub,Bengaluru,12.9716,77.5946,3864,90,Limited,4.2,4,6 months
+ABS Sensor Front,ABS-3309,Honda,City,2003,2013,Capital Car Parts,Delhi,28.6139,77.209,3255,150,In Stock,4.4,6,6 months
+ABS Sensor Front,ABS-3309,Honda,City,2003,2013,Rare Auto Spares,Chennai,13.0827,80.2707,3100,60,In Stock,4.5,3,12 months
+ABS Sensor Front,ABS-3309,Honda,City,2003,2013,Heritage Parts Hub,Bengaluru,12.9716,77.5946,2852,90,Limited,4.2,4,6 months
+ABS Sensor Front,ABS-3309,Honda,City,2003,2013,Classic Motor Depot,Mumbai,19.076,72.8777,3472,120,In Stock,4.7,5,12 months
+Injector Set (4),INJ-9021,Toyota,Innova,2005,2015,Rare Auto Spares,Chennai,13.0827,80.2707,15500,60,In Stock,4.5,3,12 months
+Injector Set (4),INJ-9021,Toyota,Innova,2005,2015,Heritage Parts Hub,Bengaluru,12.9716,77.5946,14260,90,Limited,4.2,4,6 months
+Injector Set (4),INJ-9021,Toyota,Innova,2005,2015,Classic Motor Depot,Mumbai,19.076,72.8777,17360,120,In Stock,4.7,5,12 months
+Injector Set (4),INJ-9021,Toyota,Innova,2005,2015,South Auto Traders,Kochi,9.9312,76.2673,13175,50,Order Only,3.8,8,3 months
+Fuel Pump Assembly,FPA-4467,Ford,Ikon,2001,2011,Heritage Parts Hub,Bengaluru,12.9716,77.5946,4784,90,Limited,4.2,4,6 months
+Fuel Pump Assembly,FPA-4467,Ford,Ikon,2001,2011,Classic Motor Depot,Mumbai,19.076,72.8777,5824,120,In Stock,4.7,5,12 months
+Fuel Pump Assembly,FPA-4467,Ford,Ikon,2001,2011,South Auto Traders,Kochi,9.9312,76.2673,4420,50,Order Only,3.8,8,3 months
+Fuel Pump Assembly,FPA-4467,Ford,Ikon,2001,2011,Capital Car Parts,Delhi,28.6139,77.209,5460,150,In Stock,4.4,6,6 months
+Instrument Cluster,ICL-6608,Volkswagen,Polo,2010,2019,Classic Motor Depot,Mumbai,19.076,72.8777,10976,120,In Stock,4.7,5,12 months
+Instrument Cluster,ICL-6608,Volkswagen,Polo,2010,2019,South Auto Traders,Kochi,9.9312,76.2673,8330,50,Order Only,3.8,8,3 months
+Instrument Cluster,ICL-6608,Volkswagen,Polo,2010,2019,Capital Car Parts,Delhi,28.6139,77.209,10290,150,In Stock,4.4,6,6 months
+Instrument Cluster,ICL-6608,Volkswagen,Polo,2010,2019,Rare Auto Spares,Chennai,13.0827,80.2707,9800,60,In Stock,4.5,3,12 months
+Water Pump,WPM-1189,Skoda,Rapid,2011,2019,South Auto Traders,Kochi,9.9312,76.2673,3060,50,Order Only,3.8,8,3 months
+Water Pump,WPM-1189,Skoda,Rapid,2011,2019,Capital Car Parts,Delhi,28.6139,77.209,3780,150,In Stock,4.4,6,6 months
+Water Pump,WPM-1189,Skoda,Rapid,2011,2019,Rare Auto Spares,Chennai,13.0827,80.2707,3600,60,In Stock,4.5,3,12 months
+Water Pump,WPM-1189,Skoda,Rapid,2011,2019,Heritage Parts Hub,Bengaluru,12.9716,77.5946,3312,90,Limited,4.2,4,6 months
+Turbocharger,TRB-8823,Mahindra,Bolero,2005,2016,Capital Car Parts,Delhi,28.6139,77.209,22575,150,In Stock,4.4,6,6 months
+Turbocharger,TRB-8823,Mahindra,Bolero,2005,2016,Rare Auto Spares,Chennai,13.0827,80.2707,21500,60,In Stock,4.5,3,12 months
+Turbocharger,TRB-8823,Mahindra,Bolero,2005,2016,Heritage Parts Hub,Bengaluru,12.9716,77.5946,19780,90,Limited,4.2,4,6 months
+Turbocharger,TRB-8823,Mahindra,Bolero,2005,2016,Classic Motor Depot,Mumbai,19.076,72.8777,24080,120,In Stock,4.7,5,12 months
+Gearbox Mount,GBM-3345,Maruti,Zen,1996,2006,Rare Auto Spares,Chennai,13.0827,80.2707,1500,60,In Stock,4.5,3,12 months
+Gearbox Mount,GBM-3345,Maruti,Zen,1996,2006,Heritage Parts Hub,Bengaluru,12.9716,77.5946,1380,90,Limited,4.2,4,6 months
+Gearbox Mount,GBM-3345,Maruti,Zen,1996,2006,Classic Motor Depot,Mumbai,19.076,72.8777,1680,120,In Stock,4.7,5,12 months
+Gearbox Mount,GBM-3345,Maruti,Zen,1996,2006,South Auto Traders,Kochi,9.9312,76.2673,1275,50,Order Only,3.8,8,3 months
+Radiator Fan Motor,RFM-7702,Hyundai,Verna,2006,2013,Heritage Parts Hub,Bengaluru,12.9716,77.5946,4232,90,Limited,4.2,4,6 months
+Radiator Fan Motor,RFM-7702,Hyundai,Verna,2006,2013,Classic Motor Depot,Mumbai,19.076,72.8777,5152,120,In Stock,4.7,5,12 months
+Radiator Fan Motor,RFM-7702,Hyundai,Verna,2006,2013,South Auto Traders,Kochi,9.9312,76.2673,3910,50,Order Only,3.8,8,3 months
+Radiator Fan Motor,RFM-7702,Hyundai,Verna,2006,2013,Capital Car Parts,Delhi,28.6139,77.209,4830,150,In Stock,4.4,6,6 months
